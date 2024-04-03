@@ -203,10 +203,10 @@ MonoBehaviour:
   - {fileID: 2791147058569018111}
   - {fileID: 2791147059356284310}
   - {fileID: 2791147058400971775}
-  playerCoinTxt: {fileID: 2089458848515728124}
+  playerCoinText: {fileID: 2089458848515728124}
   buttonState: {fileID: 5438741051616840366}
-  coinTxt: {fileID: 2589540924349640844}
-  adsTxt: {fileID: 6642422568706523097}
+  coinText: {fileID: 2589540924349640844}
+  adsText: {fileID: 6642422568706523097}
 --- !u!1 &2791147058314841256
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fbffbb589b6a64c8eba2b273ac3e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bg: {fileID: 3634866513938642348}
+  background: {fileID: 3634866513938642348}
   type: 3
 --- !u!222 &4540630571112694496
 CanvasRenderer:
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 4540630571143902179}
   - component: {fileID: 4540630571143902178}
   m_Layer: 5
-  m_Name: Short
+  m_Name: Pant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fbffbb589b6a64c8eba2b273ac3e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bg: {fileID: 3634866515748002969}
+  background: {fileID: 3634866515748002969}
   type: 1
 --- !u!222 &4540630571143902176
 CanvasRenderer:
@@ -948,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fbffbb589b6a64c8eba2b273ac3e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bg: {fileID: 2791147058973346216}
+  background: {fileID: 2791147058973346216}
   type: 0
 --- !u!222 &4540630569581910263
 CanvasRenderer:
@@ -1410,7 +1410,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2791147059356284308}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fbffbb589b6a64c8eba2b273ac3e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bg: {fileID: 3634866515260985575}
+  background: {fileID: 3634866515260985575}
   type: 2
 --- !u!222 &4540630569249209531
 CanvasRenderer:

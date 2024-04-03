@@ -5,27 +5,36 @@ using UnityEngine;
 public class UISetting : UICanvas
 {
 
+    [SerializeField] private GameObject musicOn;
+    [SerializeField] private GameObject musicOff;
+    [SerializeField] private GameObject effectOn;
+    [SerializeField] private GameObject effectOff;
+
     public override void Setup()
     {
         base.Setup();
         GameManager.Ins.ChangeState(GameState.Setting);
         UIManager.Ins.CloseUI<UIGameplay>();
+        Time.timeScale = 0.0f;
     }
 
-    public void SoundButton()
+    public void MusicToggle()
     {
-        Debug.Log("SoundButton");
+        musicOn.SetActive(!SoundManager.Ins.isMusicOn);
+        musicOff.SetActive(SoundManager.Ins.isMusicOn);
         SoundManager.Ins.TurnOnOffMusic();
     }
 
-    public void VibrateButton()
+    public void SoundEffectToggle()
     {
-        Debug.Log("VibrateButton");
+        effectOn.SetActive(!SoundManager.Ins.isEffectOn);
+        effectOff.SetActive(SoundManager.Ins.isEffectOn);
         SoundManager.Ins.TurnOnOffSoundEffect();
     }
 
     public void ContinueButton()
     {
+        Time.timeScale = 1.0f;
         GameManager.Ins.ChangeState(GameState.GamePlay);
         UIManager.Ins.OpenUI<UIGameplay>();
         Close(0);
@@ -33,7 +42,7 @@ public class UISetting : UICanvas
 
     public void HomeButton()
     {
+        Time.timeScale = 1.0f;
         LevelManager.Ins.Home();
     }
-
 }

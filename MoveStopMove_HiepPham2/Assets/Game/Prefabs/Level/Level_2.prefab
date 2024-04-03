@@ -325,8 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPoint: {fileID: 5761257983183619490}
   maxPoint: {fileID: 5761257982395567131}
-  enemyReal: 5
-  enemyTotal: 10
+  enemyReal: 10
+  enemyTotal: 20
 --- !u!114 &5761257981388612534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,7 +695,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761257982395567130}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -778,7 +778,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761257983183619489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

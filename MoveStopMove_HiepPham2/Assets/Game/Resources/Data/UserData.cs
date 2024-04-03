@@ -22,21 +22,14 @@ public class UserData : ScriptableObject
                 {
                     ins = datas[0];
                 }
-                else
-                if (datas.Length == 0)
-                {
-                    Debug.LogError("Can find Scriptableobject UserData");
-                }
-                else
-                {
-                    Debug.LogError("have multiple Scriptableobject UserData");
+                else {
+                    Debug.Log("there can be only one UserData");
                 }
             }
 
             return ins;
         }
-    }
-
+    } 
     public const string Key_Level = "Level";
     public const string Key_Coin = "Coin";
     public const string Key_Player_Weapon = "PlayerWeapon";
@@ -51,11 +44,8 @@ public class UserData : ScriptableObject
     public const string Keys_Accessory_Data = "AccessoryDatas";
     public const string Keys_Skin_Data = "SkinDatas";
 
-
     public int level = 0;
     public int coin = 0;
-    public static int totalCoin = 0;
-
     public WeaponType playerWeapon;
     public HatType playerHat;
     public PantType playerPant;
@@ -80,13 +70,6 @@ public class UserData : ScriptableObject
     {
         return PlayerPrefs.GetInt(key, state);
     }
-
-    /// <summary>
-    /// Key_Name
-    /// if(bool) true == 1
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="value"></param>
     public void SetIntData(string key, ref int variable, int value)
     {
         variable = value;
@@ -126,21 +109,9 @@ public class UserData : ScriptableObject
     {
         return (T)Enum.ToObject(typeof(T), PlayerPrefs.GetInt(key, Convert.ToInt32(defaultValue)));
     }
-
-
-#if UNITY_EDITOR
-    [Space(10)]
-    [Header("---- Editor ----")]
-    public bool isTest;
-#endif
-
+    
     public void OnInitData()
     {
-
-#if UNITY_EDITOR
-        if (isTest) return;
-#endif
-
         level = PlayerPrefs.GetInt(Key_Level, 0);
         coin = PlayerPrefs.GetInt(Key_Coin, 0);
 
@@ -158,32 +129,3 @@ public class UserData : ScriptableObject
     }
 
 }
-
-
-
-#if UNITY_EDITOR
-
-[CustomEditor(typeof(UserData))]
-public class UserDataEditor : Editor
-{
-    UserData userData;
-
-    private void OnEnable()
-    {
-        userData = (UserData)target;
-    }
-
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("Load Data"))
-        {
-            userData.OnInitData();
-            EditorUtility.SetDirty(userData);
-        }
-       
-    }
-}
-
-#endif

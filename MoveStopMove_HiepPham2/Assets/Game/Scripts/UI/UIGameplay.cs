@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIGameplay : UICanvas
 {
-    public TextMeshProUGUI characterAmountTxt;
+    public TextMeshProUGUI characterAmountText;
 
     public override void Setup()
     {
@@ -33,6 +33,6 @@ public class UIGameplay : UICanvas
 
     public void UpdateTotalCharacter()
     {
-        characterAmountTxt.text = LevelManager.Ins.TotalCharater.ToString();
+        characterAmountText.text = LevelManager.Ins.TotalCharacter.ToString();
     }
 }

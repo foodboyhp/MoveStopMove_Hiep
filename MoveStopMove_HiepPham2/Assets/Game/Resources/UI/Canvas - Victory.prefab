@@ -250,9 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDestroyOnClose: 0
-  coinTxt: {fileID: 4792238668563083958}
-  x3Point: {fileID: 4792238668273839569}
-  mainMenuPoint: {fileID: 4792238668563083959}
+  coinText: {fileID: 4792238668563083958}
 --- !u!1 &4114019255514052881
 GameObject:
   m_ObjectHideFlags: 0

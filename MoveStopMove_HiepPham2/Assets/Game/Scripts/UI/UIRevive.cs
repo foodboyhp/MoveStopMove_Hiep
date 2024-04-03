@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIRevive : UICanvas
 {
-    [SerializeField] TextMeshProUGUI counterTxt;
+    [SerializeField] TextMeshProUGUI counterText;
     private float counter;
 
     public override void Setup()
@@ -17,15 +17,13 @@ public class UIRevive : UICanvas
 
     private void Update()
     {
-        if (counter > 0)
-        {
+        while (counter > 0) {
             counter -= Time.deltaTime;
-            counterTxt.SetText(counter.ToString("F0"));
-
-            if (counter <= 0)
-            {
-                CloseButton();
-            }
+            counterText.SetText(counter.ToString("F0"));
+        }
+        if (counter <= 0.01f)
+        {
+            CloseButton();
         }
     }
 
@@ -33,7 +31,7 @@ public class UIRevive : UICanvas
     {
         GameManager.Ins.ChangeState(GameState.GamePlay);
         Close(0);
-        LevelManager.Ins.OnRevive();
+        LevelManager.Ins.Revive();
         UIManager.Ins.OpenUI<UIGameplay>();
     }
 
@@ -42,6 +40,4 @@ public class UIRevive : UICanvas
         Close(0);
         LevelManager.Ins.Fail();
     }
-
-
 }

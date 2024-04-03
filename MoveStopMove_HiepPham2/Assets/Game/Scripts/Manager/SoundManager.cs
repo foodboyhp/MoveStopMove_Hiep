@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MusicState {MainMenu, GamePlay}
+public enum MusicState {
+    MainMenu, 
+    GamePlay
+}
 public enum SoundEffectState {
     Normal,
     Coin,
@@ -11,12 +14,14 @@ public enum SoundEffectState {
 public class SoundManager : Singleton<SoundManager>
 {
 
-    public AudioSource musicSource;
-    public AudioSource soundEffectSource;
-    public AudioClip[] musicClips;
-    public AudioClip[] soundEffectClips;
-    private MusicState musicState;
-    private SoundEffectState soundEffectState;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource soundEffectSource;
+    [SerializeField] private AudioClip[] musicClips;
+    [SerializeField] private AudioClip[] soundEffectClips;
+    public MusicState musicState;
+    public SoundEffectState soundEffectState;
+    public bool isMusicOn = true;
+    public bool isEffectOn = true;
 
     public void Start(){
         OnInit();   
@@ -41,15 +46,19 @@ public class SoundManager : Singleton<SoundManager>
     }
     public void TurnOnOffMusic(){
         if(this.musicSource.volume > 0.0f){
+            isMusicOn = false;
             this.musicSource.volume = 0.0f;
         } else if(this.musicSource.volume < 0.1f) {
+            isMusicOn = true;
             this.musicSource.volume = 1.0f;
         }
     }
     public void TurnOnOffSoundEffect(){
         if(this.soundEffectSource.volume > 0.0f){
+            isEffectOn = false;
             this.soundEffectSource.volume = 0.0f;
         } else if(this.soundEffectSource.volume < 0.1f) {
+            isEffectOn = true;
             this.soundEffectSource.volume = 1.0f;
         }
     }

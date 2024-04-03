@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public Player player;
-
+    [SerializeField] private Level[] levels;
+    [SerializeField] public Player player;
+    [SerializeField] private Level currentLevel;
     private List<Enemy> enemys = new List<Enemy>();
 
-    [SerializeField] Level[] levels;
-    public Level currentLevel;
-
-    private int totalEnemy;
     private bool isRevive;
-
     private int levelIndex;
-
-    public int TotalCharater => totalEnemy + enemys.Count + 1;
+    private int totalEnemy;
+    public int TotalCharacter => totalEnemy + enemys.Count;
 
     public void Start()
     {
@@ -71,7 +67,6 @@ public class LevelManager : Singleton<LevelManager>
 
         for (int t = 0; t < 50; t++)
         {
-
             randPoint = currentLevel.RandomPoint();
             if (Vector3.Distance(randPoint, player.TF.position) < size)
             {
@@ -107,10 +102,10 @@ public class LevelManager : Singleton<LevelManager>
         enemy.ChangeState(state);
         enemys.Add(enemy);
 
-        enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 7, player.Score + 7) : 1);
+        enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 5, player.Score + 5) : 1);
     }
 
-    public void CharecterDeath(Character c)
+    public void CharacterDeath(Character c)
     {
         if (c is Player)
         {
@@ -127,8 +122,7 @@ public class LevelManager : Singleton<LevelManager>
                 Fail();
             }
         }
-        else
-        if (c is Enemy)
+        else if (c is Enemy)
         {
             enemys.Remove(c as Enemy);
 
@@ -158,14 +152,14 @@ public class LevelManager : Singleton<LevelManager>
     private void Victory()
     {
         UIManager.Ins.CloseAll();
-        UIManager.Ins.OpenUI<UIVictory>().SetCoin(player.Coin);
+        UIManager.Ins.OpenUI<UIVictory>();
         player.ChangeAnim(Constant.ANIM_WIN);
     }
 
     public void Fail()
     {
         UIManager.Ins.CloseAll();
-        UIManager.Ins.OpenUI<UIFail>().SetCoin(player.Coin); 
+        UIManager.Ins.OpenUI<UIFail>().SetRank(TotalCharacter + 1); 
     }
 
     public void Home()
@@ -180,9 +174,12 @@ public class LevelManager : Singleton<LevelManager>
     public void NextLevel()
     {
         levelIndex++;
+        if(levelIndex >= levels.Length){
+            levelIndex = 0;
+        }
     }
 
-    public void OnPlay()
+    public void Play()
     {
         for (int i = 0; i < enemys.Count; i++)
         {
@@ -190,7 +187,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public void OnRevive()
+    public void Revive()
     {
         player.TF.position = RandomPoint();
         player.OnRevive();
@@ -205,4 +202,11 @@ public class LevelManager : Singleton<LevelManager>
             (list[i] as TargetIndicator).SetAlpha(alpha);
         }
     }
+
+    //Test only
+    // public void Update(){
+    //     if(Input.GetKeyDown(KeyCode.Space)){
+    //         CharacterDeath(player);
+    //     }
+    // }
 }

@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDestroyOnClose: 0
-  characterAmountTxt: {fileID: 7739472764627619317}
+  characterAmountText: {fileID: 7739472764627619317}
 --- !u!1 &7739472764627619319
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 7739472764627619322}
   - component: {fileID: 7739472764627619317}
   m_Layer: 5
-  m_Name: NumOfEnemiesText
+  m_Name: NumOfCharactersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 7739472764880899373}
   - component: {fileID: 7739472764880899372}
   m_Layer: 5
-  m_Name: Image - Alive
+  m_Name: EnemyCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

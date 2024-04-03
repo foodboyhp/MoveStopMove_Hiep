@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
-
 public class PoolController : MonoBehaviour
 {
     [Header("---- POOL CONTROLER TO INIT POOL ----")]
     [Header("Put object pool to list Pool or Resources/Pool")]
-    [Header("Preload: Init Pool")]
-    [Header("Spawn: Take object from pool")]
-    [Header("Despawn: return object to pool")]
-    [Header("Collect: return objects type to pool")]
-    [Header("CollectAll: return all objects to pool")]
 
     [Space]
     [Header("Pool")]
@@ -37,80 +30,9 @@ public class PoolController : MonoBehaviour
     }
 }
 
-#if UNITY_EDITOR
-
-[CustomEditor(typeof(PoolController))]
-public class PoolControllerEditor : Editor
-{
-    PoolController pool;
-
-    private void OnEnable()
-    {
-        pool = (PoolController)target;
-    }
-
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("Create Quick Root"))
-        {
-            for (int i = 0; i < pool.Pool.Count; i++)
-            {
-                if (pool.Pool[i].root == null)
-                {
-                    Transform tf = new GameObject(pool.Pool[i].prefab.poolType.ToString()).transform;
-                    tf.parent = pool.transform;
-                    pool.Pool[i].root = tf; 
-                }
-            }
-            
-            for (int i = 0; i < pool.Particle.Length; i++)
-            {
-                if (pool.Particle[i].root == null)
-                {
-                    Transform tf = new GameObject(pool.Particle[i].particleType.ToString()).transform;
-                    tf.parent = pool.transform;
-                    pool.Particle[i].root = tf; 
-                }
-            }
-        }
-
-        if (GUILayout.Button("Get Prefab Resource"))
-        {
-            GameUnit[] resources = Resources.LoadAll<GameUnit>("Pool");
-
-            for (int i = 0; i < resources.Length; i++)
-            {
-                bool isDuplicate = false;
-                for (int j = 0; j < pool.Pool.Count; j++)
-                {
-                    if (resources[i].poolType == pool.Pool[j].prefab.poolType)
-                    {
-                        isDuplicate = true;
-                        break;
-                    }
-                }
-
-                if (!isDuplicate)
-                {
-                    Transform root = new GameObject(resources[i].name).transform;
-
-                    PoolAmount newPool = new PoolAmount(root, resources[i], SimplePool.DEFAULT_POOL_SIZE, true);
-
-                    pool.Pool.Add(newPool);
-                }
-            }
-        }
-    }
-}
-
-#endif
-
 [System.Serializable]
 public class PoolAmount
 {
-    [Header("-- Pool Amount --")]
     public Transform root;
     public GameUnit prefab;
     public int amount;
@@ -136,6 +58,136 @@ public class ParticleAmount
 }
 
 
+public enum WeaponType
+{
+    W_Hammer_1 = PoolType.W_Hammer_1,
+    W_Hammer_2 = PoolType.W_Hammer_2,
+    W_Hammer_3 = PoolType.W_Hammer_3,
+    W_Candy_1 = PoolType.W_Candy_1,
+    W_Candy_2 = PoolType.W_Candy_2,
+    W_Candy_3 = PoolType.W_Candy_3,
+    W_Boomerang_1 = PoolType.W_Boomerang_1,
+    W_Boomerang_2 = PoolType.W_Boomerang_2,
+    W_Boomerang_3 = PoolType.W_Boomerang_3,
+}
 
+public enum BulletType
+{
+    B_Hammer_1 = PoolType.B_Hammer_1,
+    B_Hammer_2 = PoolType.B_Hammer_2,
+    B_Hammer_3 = PoolType.B_Hammer_3,
+    B_Candy_1 = PoolType.B_Candy_1,
+    B_Candy_2 = PoolType.B_Candy_2,
+    B_Candy_3 = PoolType.B_Candy_3,
+    B_Boomerang_1 = PoolType.B_Boomerang_1,
+    B_Boomerang_2 = PoolType.B_Boomerang_2,
+    B_Boomerang_3 = PoolType.B_Boomerang_3,
+}
 
+public enum HatType 
+{
+    HAT_None = 0,
+    HAT_Arrow = PoolType.HAT_Arrow,
+    HAT_Cap = PoolType.HAT_Cap,
+    HAT_Cowboy = PoolType.HAT_Cowboy,
+    HAT_Crown = PoolType.HAT_Crown,
+    HAT_Ear = PoolType.HAT_Ear,
+    HAT_StrawHat = PoolType.HAT_StrawHat,
+    HAT_Headphone = PoolType.HAT_Headphone,
+    HAT_Horn = PoolType.HAT_Horn,
+    HAT_Police = PoolType.HAT_Police,
+}
 
+public enum SkinType
+{
+    SKIN_Normal = PoolType.SKIN_Normal,
+    SKIN_Devil = PoolType.SKIN_Devil,
+    SKIN_Angle = PoolType.SKIN_Angle,
+    SKIN_Witch = PoolType.SKIN_Witch,
+    SKIN_Deadpool = PoolType.SKIN_Deadpool,
+    SKIN_Thor = PoolType.SKIN_Thor,
+}
+
+public enum AccessoryType
+{
+    ACC_None = 0,
+    ACC_Book = PoolType.ACC_Book,
+    ACC_CaptainShield = PoolType.ACC_Captain,
+    ACC_Headphone = PoolType.ACC_Headphone,
+    ACC_Shield = PoolType.ACC_Shield,
+}
+
+public enum PantType
+{
+    Pant_1,
+    Pant_2,
+    Pant_3,
+    Pant_4,
+    Pant_5,
+    Pant_6,
+    Pant_7,
+    Pant_8,
+    Pant_9,
+}
+
+public enum ParticleType
+{
+    Hit_1,
+    Hit_2,
+    Hit_3,
+
+    LevelUp_1,
+    LevelUp_2,
+    LevelUp_3,
+}
+
+public enum PoolType
+{
+    None,
+
+    Enemy,
+
+    W_Hammer_1,
+    W_Hammer_2,
+    W_Hammer_3,
+    W_Candy_1,
+    W_Candy_2,
+    W_Candy_3,
+    W_Boomerang_1,
+    W_Boomerang_2,
+    W_Boomerang_3,
+
+    B_Hammer_1,
+    B_Hammer_2,
+    B_Hammer_3,
+    B_Candy_1,
+    B_Candy_2,
+    B_Candy_3,
+    B_Boomerang_1,
+    B_Boomerang_2,
+    B_Boomerang_3,
+
+    SKIN_Normal,
+    SKIN_Devil,
+    SKIN_Angle,
+    SKIN_Witch,
+    SKIN_Deadpool,
+    SKIN_Thor,
+
+    HAT_Arrow,
+    HAT_Cap,
+    HAT_Cowboy,
+    HAT_Crown,
+    HAT_Ear,
+    HAT_StrawHat,
+    HAT_Headphone,
+    HAT_Horn,
+    HAT_Police,
+
+    ACC_Book,
+    ACC_Captain,
+    ACC_Headphone,
+    ACC_Shield,
+
+    TargetIndicator,
+}

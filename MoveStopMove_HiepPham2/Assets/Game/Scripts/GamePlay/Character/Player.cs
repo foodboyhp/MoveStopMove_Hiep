@@ -20,11 +20,8 @@ public class Player : Character
     AccessoryType accessoryType = AccessoryType.ACC_Headphone;
     PantType pantType = PantType.Pant_1;
 
-    [SerializeField] ParticleSystem reviveVFX;
+    // [SerializeField] ParticleSystem reviveVFX;
 
-    public int Coin => Score * 10;
-
-    // Update is called once per frame
     void Update()
     {
         if (IsCanUpdate && !IsDead)
@@ -37,12 +34,9 @@ public class Player : Character
 
             if (Input.GetMouseButton(0) && JoystickControl.direct != Vector3.zero)
             {
-                //rb.velocity = JoystickControl.direct * moveSpeed;
                 rb.MovePosition(rb.position + JoystickControl.direct * moveSpeed * Time.deltaTime);
                 TF.position = rb.position;
-
                 TF.forward = JoystickControl.direct;
-
                 ChangeAnim(Constant.ANIM_RUN);
                 isMoving = true;
             }
@@ -70,7 +64,7 @@ public class Player : Character
         TF.rotation = Quaternion.Euler(Vector3.up * 180);
         SetSize(MIN_SIZE);
 
-        indicator.SetName("YOU");
+        indicator.SetName("Player");
     }
 
     public override void WearClothes()
@@ -133,7 +127,7 @@ public class Player : Character
         IsDead = false;
         ClearTarget();
 
-        reviveVFX.Play();
+        // reviveVFX.Play();
     }
 
     public override void OnDeath()
@@ -142,30 +136,30 @@ public class Player : Character
         counter.Cancel();
     }
 
-    public void TryCloth(UIShop.ShopType shopType, Enum type)
+    public void TryCloth(UISkinShop.ShopType shopType, Enum type)
     {
         switch (shopType)
         {
-            case UIShop.ShopType.Hat:
+            case UISkinShop.ShopType.Hat:
                 currentSkin.DespawnHat();
                 ChangeHat((HatType)type);
                 break;
 
-            case UIShop.ShopType.Pant:
+            case UISkinShop.ShopType.Pant:
                 ChangePant((PantType)type);
                 break;
 
-            case UIShop.ShopType.Accessory:
+            case UISkinShop.ShopType.Accessory:
                 currentSkin.DespawnAccessory();
                 ChangeAccessory((AccessoryType)type);
                 break;
 
-            case UIShop.ShopType.Skin:
+            case UISkinShop.ShopType.Skin:
                 TakeOffClothes();
                 skinType = (SkinType)type;
                 WearClothes();
                 break;
-            case UIShop.ShopType.Weapon:
+            case UISkinShop.ShopType.Weapon:
                 currentSkin.DespawnWeapon();
                 ChangeWeapon((WeaponType)type);
                 break;

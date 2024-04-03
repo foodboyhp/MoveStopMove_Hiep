@@ -5,36 +5,32 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using static UIShop;
+using static UISkinShop;
 using static UnityEditor.LightingExplorerTableColumn;
 
 public class ShopItem : MonoBehaviour
 {
     public enum State { Buy, Bought, Equipped, Selecting }
 
-    [SerializeField] GameObject[] stateObjects;
-
-    private UIShop shop;
-
-    [SerializeField] Color[] colorBg;
-    [SerializeField] Image icon;
-    [SerializeField] Image bgIcon;
-
-    public int id;
-    public State state;
-
+    [SerializeField] private GameObject[] stateObjects;
+    [SerializeField] private Color[] colorBg;
+    [SerializeField] private Image icon;
+    [SerializeField] private Image bgIcon;
+    private UISkinShop shop;
+    private int id;
     public Enum Type;
+    public State state;
     internal ShopItemData data;
 
-    public void SetShop(UIShop shop)
+    public void SetShop(UISkinShop shop)
     {
         this.shop = shop;
     }
 
-    public void SetData<T>(int id, ShopItemData<T> itemData, UIShop shop) where T : Enum
+    public void SetData<T>(int id, ShopItemData<T> itemData, UISkinShop shop) where T : Enum
     {
         this.id = id;
-        Type = itemData.type;
+        this.Type = itemData.type;
         this.data = itemData;
         this.shop = shop;
         icon.sprite = itemData.icon;

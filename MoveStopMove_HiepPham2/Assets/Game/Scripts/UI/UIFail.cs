@@ -3,35 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.Random;
 
 public class UIFail : UICanvas
 {
     private int coin;
-    [SerializeField] TextMeshProUGUI coinTxt;
-    [SerializeField] RectTransform x3Point;
-    [SerializeField] RectTransform mainMenuPoint;
+    [SerializeField] TextMeshProUGUI coinText;
+    [SerializeField] TextMeshProUGUI rankText;
 
     public override void Open()
     {
         base.Open();
         GameManager.Ins.ChangeState(GameState.Finish);
+        SetCoin(UnityEngine.Random.Range(10,30));
     }
 
     public void x3Button()
     {
+        UserData.Ins.SetDataState(UserData.Key_Coin, UserData.Ins.GetDataState(UserData.Key_Coin) + this.coin * 3);
         LevelManager.Ins.Home();
-        // UserData.Ins.
     }
 
     public void MainMenuButton()
     {
+        UserData.Ins.SetDataState(UserData.Key_Coin, UserData.Ins.GetDataState(UserData.Key_Coin) + this.coin);
         LevelManager.Ins.Home();
-        // UIVfx.Ins.AddCoin(3, coin, mainMenuPoint.position, UIVfx.Ins.CoinPoint);
     }
+
 
     internal void SetCoin(int coin)
     {
         this.coin = coin;
-        coinTxt.SetText(coin.ToString());
+        coinText.SetText(coin.ToString());
+    }
+
+    internal void SetRank(int rank){
+        rankText.SetText("#" + rank.ToString());
     }
 }

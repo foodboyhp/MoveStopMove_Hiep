@@ -30,7 +30,6 @@ public class CameraFollow : Singleton<CameraFollow>
 
     private void Awake()
     {
-        // target = FindObjectOfType<Player>().transform;
         Camera = Camera.main;
     }
 
@@ -41,7 +40,6 @@ public class CameraFollow : Singleton<CameraFollow>
         tf.position = Vector3.Lerp(tf.position, target.position + targetOffset, Time.deltaTime * moveSpeed);
     }
 
-    //rate
     public void SetRateOffset(float rate)
     {
         targetOffset = Vector3.Lerp(offsetMin, offsetMax, rate);

@@ -7,37 +7,34 @@ using UnityEngine;
 public class UIVictory : UICanvas
 {
     private int coin;
-    [SerializeField] TextMeshProUGUI coinTxt;
-    [SerializeField] RectTransform x3Point;
-    [SerializeField] RectTransform mainMenuPoint;
+    [SerializeField] TextMeshProUGUI coinText;
 
     public override void Open()
     {
         base.Open();
         GameManager.Ins.ChangeState(GameState.Finish);
+        SetCoin(UnityEngine.Random.Range(30,50));
+
     }
 
     public void x3Button()
     {
+        UserData.Ins.SetDataState(UserData.Key_Coin, UserData.Ins.GetDataState(UserData.Key_Coin) + this.coin * 3);
         LevelManager.Ins.NextLevel();
         LevelManager.Ins.Home();
 
-        // UIVfx.Ins.AddCoin(9, coin * 3, x3Point.position, UIVfx.Ins.CoinPoint);
-        CoinControl.AddCoin(30);
     }
 
     public void NextAreaButton()
     {
+        UserData.Ins.SetDataState(UserData.Key_Coin, UserData.Ins.GetDataState(UserData.Key_Coin) + this.coin);
         LevelManager.Ins.NextLevel();
         LevelManager.Ins.Home();
-
-        // UIVfx.Ins.AddCoin(3, coin, mainMenuPoint.position, UIVfx.Ins.CoinPoint);
-        CoinControl.AddCoin(10);
     }
 
     internal void SetCoin(int coin)
     {
         this.coin = coin;
-        coinTxt.SetText(coin.ToString());
+        coinText.SetText(coin.ToString());
     }
 }

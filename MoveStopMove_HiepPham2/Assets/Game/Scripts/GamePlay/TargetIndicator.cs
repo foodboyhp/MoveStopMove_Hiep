@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class TargetIndicator : GameUnit
 {
-    [SerializeField] RectTransform rect;
-    [SerializeField] Image iconImg;
-    [SerializeField] Image directImg;
-    [SerializeField] RectTransform direct;
-    [SerializeField] TextMeshProUGUI nameTxt;
-    [SerializeField] TextMeshProUGUI scoreTxt;
+    [SerializeField] private RectTransform rect;
+    [SerializeField] private Image iconImg;
+    [SerializeField] private Image directImg;
+    [SerializeField] private RectTransform direct;
+    [SerializeField] private TextMeshProUGUI nameTxt;
+    [SerializeField] private TextMeshProUGUI scoreTxt;
 
-    [SerializeField] CanvasGroup canvasGroup;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     Transform target;
     Vector3 screenHalf = new Vector2(Screen.width, Screen.height) / 2; 

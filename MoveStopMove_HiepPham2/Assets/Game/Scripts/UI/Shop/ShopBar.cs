@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ShopBar : MonoBehaviour
 {
-    [SerializeField] GameObject bg;
-    [SerializeField] UIShop.ShopType type;
-    public UIShop.ShopType Type => type;
-
-    UIShop shop;
-
-    public void SetShop(UIShop shop)
+    [SerializeField] private GameObject background;
+    [SerializeField] private UISkinShop.ShopType type;
+    private UISkinShop shop;
+    public UISkinShop.ShopType Type => type;
+    public void SetShop(UISkinShop shop)
     {
         this.shop = shop;
     }
@@ -20,8 +18,8 @@ public class ShopBar : MonoBehaviour
         shop.SelectBar(this);
     }
 
-    public void Active(bool active)
+    public void ToggleActive(bool active)
     {
-        bg.SetActive(!active);
+        background.SetActive(!active);
     }
 }

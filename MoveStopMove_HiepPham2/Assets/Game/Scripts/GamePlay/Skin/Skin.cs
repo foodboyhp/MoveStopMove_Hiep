@@ -8,10 +8,10 @@ public class Skin : GameUnit
 
     [SerializeField] PantData pantData;
 
-    [SerializeField] Transform head;
-    [SerializeField] Transform rightHand;
-    [SerializeField] Transform leftHand;
-    [SerializeField] Renderer pant;
+    [SerializeField] Transform head; // hat
+    [SerializeField] Transform rightHand; //weapon
+    [SerializeField] Transform leftHand; //accessory
+    [SerializeField] Renderer pant; // pant
 
     [SerializeField] bool isCanChange = false;
 

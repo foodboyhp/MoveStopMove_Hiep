@@ -5,15 +5,13 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    Vector3 destination;
-    [SerializeField] protected NavMeshAgent agent;
-    protected IState<Enemy> currentState;
-
-
+    [SerializeField] private NavMeshAgent agent;
+    private IState<Enemy> currentState;
+    private Vector3 destination;
     private CounterTime counter = new CounterTime();
+    private bool IsCanRunning => (GameManager.Ins.IsState(GameState.GamePlay) || GameManager.Ins.IsState(GameState.Revive) || GameManager.Ins.IsState(GameState.Setting));
     public CounterTime Counter => counter;
 
-    private bool IsCanRunning => (GameManager.Ins.IsState(GameState.GamePlay) || GameManager.Ins.IsState(GameState.Revive) || GameManager.Ins.IsState(GameState.Setting));
 
     private void Update()
     {
@@ -49,7 +47,6 @@ public class Enemy : Character
     public override void WearClothes()
     {
         base.WearClothes();
-
         //change random 
         ChangeSkin(SkinType.SKIN_Normal);
         ChangeWeapon(Utilities.RandomEnumValue<WeaponType>());
