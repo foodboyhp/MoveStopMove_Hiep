@@ -23,6 +23,7 @@ public class UISetting : UICanvas
         musicOn.SetActive(!SoundManager.Ins.isMusicOn);
         musicOff.SetActive(SoundManager.Ins.isMusicOn);
         SoundManager.Ins.TurnOnOffMusic();
+        SoundManager.Ins.PlaySoundEffect(SoundEffectState.Button);
     }
 
     public void SoundEffectToggle()
@@ -30,6 +31,7 @@ public class UISetting : UICanvas
         effectOn.SetActive(!SoundManager.Ins.isEffectOn);
         effectOff.SetActive(SoundManager.Ins.isEffectOn);
         SoundManager.Ins.TurnOnOffSoundEffect();
+        SoundManager.Ins.PlaySoundEffect(SoundEffectState.Button);
     }
 
     public void ContinueButton()

@@ -6,8 +6,8 @@ public class Weapon : GameUnit
 {
     public const float TIME_DELAY_ATTACK = 0.5f;
 
-    [SerializeField] GameObject child;
-    [SerializeField] BulletType bulletType;
+    [SerializeField] private GameObject child;
+    [SerializeField] private BulletType bulletType;
 
     public bool IsCanAttack => child.activeSelf;
 

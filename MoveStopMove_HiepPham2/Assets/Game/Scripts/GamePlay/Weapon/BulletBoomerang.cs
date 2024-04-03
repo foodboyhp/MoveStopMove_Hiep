@@ -18,7 +18,6 @@ public class BulletBoomerang : Bullet
         state = State.Forward;
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (state)

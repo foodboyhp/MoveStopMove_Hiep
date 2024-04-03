@@ -7,7 +7,7 @@ public class NameUtilities
 {
     private static List<string> names = new List<string>()
     {
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"
+        "AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH", "II", "JJ", "KK", "LL", "MM", "NN", "OO", "PP"
     };
 
     public static List<string> GetNames(int amount)

@@ -21,14 +21,13 @@ public class Bullet : GameUnit
         SimplePool.Despawn(this);
     }
 
-    protected virtual void OnStop() { }
+    protected virtual void OnStop() {}
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constant.TAG_CHARACTER))
         {
             IHit hit = Cache.GetIHit(other);
-
             if (hit != null && hit != (IHit)character)
             {
                 hit.OnHit(

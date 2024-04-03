@@ -141,6 +141,7 @@ public class LevelManager : Singleton<LevelManager>
                 if (enemys.Count == 0)
                 {
                     Victory();
+                    SoundManager.Ins.PlaySoundEffect(SoundEffectState.Victory);
                 }
             }
 
@@ -160,6 +161,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI<UIFail>().SetRank(TotalCharacter + 1); 
+        SoundManager.Ins.PlaySoundEffect(SoundEffectState.Fail);
     }
 
     public void Home()
@@ -169,6 +171,7 @@ public class LevelManager : Singleton<LevelManager>
         OnLoadLevel(levelIndex);
         OnInit();
         UIManager.Ins.OpenUI<UIMainMenu>();
+        SoundManager.Ins.ChangeMusic(MusicState.MainMenu);
     }
 
     public void NextLevel()
@@ -185,6 +188,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             enemys[i].ChangeState(new PatrolState());
         }
+        SoundManager.Ins.ChangeMusic(MusicState.GamePlay);
     }
 
     public void Revive()

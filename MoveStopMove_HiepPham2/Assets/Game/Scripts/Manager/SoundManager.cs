@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum MusicState {
-    MainMenu, 
-    GamePlay
+    MainMenu = 0, 
+    GamePlay = 1
 }
 public enum SoundEffectState {
     Normal,
     Coin,
-    Shoot
+    Shoot,
+    Button,
+    Victory,
+    Fail
 }
 public class SoundManager : Singleton<SoundManager>
 {
@@ -43,6 +46,7 @@ public class SoundManager : Singleton<SoundManager>
     public void ChangeMusic(MusicState musicState){
         this.musicState = musicState;
         this.musicSource.clip = musicClips[(int)musicState];
+        musicSource.Play();
     }
     public void TurnOnOffMusic(){
         if(this.musicSource.volume > 0.0f){

@@ -17,9 +17,7 @@ public class CameraFollow : Singleton<CameraFollow>
     [SerializeField] Vector3 offset;
     [SerializeField] Vector3 offsetMax;
     [SerializeField] Vector3 offsetMin;
-
     [SerializeField] Transform[] offsets;
-
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] Transform target;
 

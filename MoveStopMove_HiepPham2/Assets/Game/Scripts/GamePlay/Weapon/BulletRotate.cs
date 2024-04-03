@@ -14,7 +14,6 @@ public class BulletRotate : Bullet
         counterTime.Start(OnDespawn, TIME_ALIVE * size);
     }
 
-    // Update is called once per frame
     void Update()
     {
         counterTime.Execute();

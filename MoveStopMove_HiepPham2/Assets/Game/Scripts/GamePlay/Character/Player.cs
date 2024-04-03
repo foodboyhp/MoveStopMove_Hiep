@@ -5,20 +5,16 @@ using UnityEngine;
 
 public class Player : Character
 {
-    [SerializeField] Rigidbody rb;
-    [SerializeField] float moveSpeed = 5f;
-
-    private bool isMoving = false;
-
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float moveSpeed = 5f;
     private CounterTime counter = new CounterTime();
-
+    private bool isMoving = false;
     private bool IsCanUpdate => GameManager.Ins.IsState(GameState.GamePlay) || GameManager.Ins.IsState(GameState.Setting);
-
-    SkinType skinType = SkinType.SKIN_Normal;
-    WeaponType weaponType = WeaponType.W_Candy_1;
-    HatType hatType = HatType.HAT_Cap;
-    AccessoryType accessoryType = AccessoryType.ACC_Headphone;
-    PantType pantType = PantType.Pant_1;
+    private SkinType skinType = SkinType.SKIN_Normal;
+    private WeaponType weaponType = WeaponType.W_Candy_1;
+    private HatType hatType = HatType.HAT_Cap;
+    private AccessoryType accessoryType = AccessoryType.ACC_Headphone;
+    private PantType pantType = PantType.Pant_1;
 
     // [SerializeField] ParticleSystem reviveVFX;
 
@@ -58,19 +54,15 @@ public class Player : Character
     public override void OnInit()
     {
         OnTakeClothsData();
-
         base.OnInit();
-
         TF.rotation = Quaternion.Euler(Vector3.up * 180);
         SetSize(MIN_SIZE);
-
         indicator.SetName("Player");
     }
 
     public override void WearClothes()
     {
         base.WearClothes(); 
-
         ChangeSkin(skinType);
         ChangeWeapon(weaponType);
         ChangeHat(hatType);
@@ -126,7 +118,6 @@ public class Player : Character
         ChangeAnim(Constant.ANIM_IDLE);
         IsDead = false;
         ClearTarget();
-
         // reviveVFX.Play();
     }
 

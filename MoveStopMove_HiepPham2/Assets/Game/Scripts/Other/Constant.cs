@@ -14,5 +14,4 @@ public class Constant
     public const string TAG_CHARACTER = "Character";
     public const string TAG_BLOCK = "Block";
 
-   
 }
