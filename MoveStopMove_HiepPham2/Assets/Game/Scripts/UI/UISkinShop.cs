@@ -18,8 +18,9 @@ public class UISkinShop : UICanvas
     [SerializeField] private Text coinText;
     [SerializeField] private Text adsText;
 
+    [SerializeField] private ShopItem prevItem;
+    [SerializeField] private ShopItem currentItem;
     MiniPool<ShopItem> miniPool = new MiniPool<ShopItem>();
-    private ShopItem currentItem;
     private ShopItem itemEquiped;
     private ShopBar currentBar;
     public ShopType shopType => currentBar.Type;
@@ -111,7 +112,7 @@ public class UISkinShop : UICanvas
         {
             currentItem.SetState(GetState(currentItem.Type));
         }
-
+        prevItem = currentItem;
         currentItem = item;
 
         switch (currentItem.state)
@@ -146,7 +147,7 @@ public class UISkinShop : UICanvas
             UserData.Ins.SetEnumData(currentItem.Type.ToString(), ShopItem.State.Bought);
             UserData.Ins.SetDataState(UserData.Key_Coin, UserData.Ins.GetDataState(UserData.Key_Coin) - currentItem.data.cost);
             playerCoinText.SetText(UserData.Ins.GetDataState(UserData.Key_Coin).ToString());
-            SelectItem(currentItem);
+            buttonState.SetState(ButtonState.State.Equip);
         }
     }
 
@@ -159,6 +160,11 @@ public class UISkinShop : UICanvas
     {
         if (currentItem != null)
         {
+            if(prevItem != null){
+                if(prevItem.state == ShopItem.State.Equipped){
+                    prevItem.SetState(ShopItem.State.Bought);
+                }
+            }
             UserData.Ins.SetEnumData(currentItem.Type.ToString(), ShopItem.State.Equipped);
 
             switch (shopType)

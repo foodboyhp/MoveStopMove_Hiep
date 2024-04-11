@@ -32,6 +32,7 @@ public class AttackState : IState<Enemy>
 
     public void OnExit(Enemy t)
     {
+        
     }
 
 }

@@ -448,7 +448,6 @@ MonoBehaviour:
   - {r: 1, g: 0.6, b: 0.49411768, a: 1}
   icon: {fileID: 2824361169244227040}
   bgIcon: {fileID: 2824361167480787847}
-  id: 0
   state: 0
 --- !u!114 &8637970062687070546
 MonoBehaviour:

@@ -326,7 +326,7 @@ MonoBehaviour:
   minPoint: {fileID: 5761257983183619490}
   maxPoint: {fileID: 5761257982395567131}
   enemyReal: 10
-  enemyTotal: 20
+  enemyTotal: 50
 --- !u!114 &5761257981388612534
 MonoBehaviour:
   m_ObjectHideFlags: 0
