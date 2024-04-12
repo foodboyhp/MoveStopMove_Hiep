@@ -9,8 +9,6 @@ public class Character : GameUnit, IHit
     public const float ATT_RANGE = 5f;
     public const float MAX_SIZE = 4f;
     public const float MIN_SIZE = 1f;
-
-
     [SerializeField] private Transform indicatorPoint;
     [SerializeField] private GameObject mask;
 
@@ -65,7 +63,7 @@ public class Character : GameUnit, IHit
 
     }
 
-    public void Throw()
+    public virtual void Throw()
     {
         currentSkin.Weapon.Throw(this, targetPoint, size);
     }

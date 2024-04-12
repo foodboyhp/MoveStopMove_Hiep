@@ -16,7 +16,6 @@ public class Player : Character
     private AccessoryType accessoryType = AccessoryType.ACC_Headphone;
     private PantType pantType = PantType.Pant_1;
 
-    // [SerializeField] ParticleSystem reviveVFX;
 
     void Update()
     {
@@ -118,7 +117,6 @@ public class Player : Character
         ChangeAnim(Constant.ANIM_IDLE);
         IsDead = false;
         ClearTarget();
-        // reviveVFX.Play();
     }
 
     public override void OnDeath()

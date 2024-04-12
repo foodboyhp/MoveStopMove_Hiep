@@ -17,11 +17,14 @@ public class CounterTime
 
     public void Execute()
     {
-        while (time > 0)
+        if (time > 0)
         {
             time -= Time.deltaTime;
+            if (time <= 0)
+            {
+                Exit();
+            }
         }
-        Exit();
     }
 
     public void Exit()

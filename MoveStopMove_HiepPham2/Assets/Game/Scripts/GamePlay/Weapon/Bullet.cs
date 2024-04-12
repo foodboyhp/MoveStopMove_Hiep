@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : GameUnit
 {
     protected Character character;
-    [SerializeField] protected float moveSpeed = 8f;
+    [SerializeField] protected float moveSpeed = 6f;
     protected bool isRunning;
 
     public virtual void OnInit(Character character, Vector3 target, float size)
@@ -33,7 +33,6 @@ public class Bullet : GameUnit
                 hit.OnHit(
                     ()=> { 
                         character.AddScore(1);
-                        // ParticlePool.Play(Utilities.RandomInMember(ParticleType.Hit_1, ParticleType.Hit_2, ParticleType.Hit_3), TF.position);
                         SimplePool.Despawn(this);
                     });
             }

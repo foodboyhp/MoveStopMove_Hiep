@@ -92,7 +92,7 @@ public class Enemy : Character
     {
         base.AddTarget(target);
 
-        if (!IsDead && Utilities.Chance(50, 100) && IsCanRunning)
+        if (!IsDead && Utilities.Chance(70, 100) && IsCanRunning)
         {
             ChangeState(new AttackState());
         }
